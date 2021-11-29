@@ -1,6 +1,6 @@
 <template>
   <div class="video-player" v-if="reseted">
-    <video class="video-js" ref="video">
+    <video class="video-js " ref="video">
       <track
         v-for="crtTrack in trackList"
         :kind="crtTrack.kind"
@@ -10,9 +10,13 @@
         :default="crtTrack.default"
         :key="crtTrack.src"
       />
+
       <!-- support inner video slots -->
-      <slot name="video-inner" />
+      <div class="video-inner-slot">
+        <slot name="video-inner" />
+      </div>
     </video>
+      
   </div>
 </template>
 
@@ -196,7 +200,11 @@ export default {
 
         // player readied
         self.$emit("ready", this);
+
       });
+
+      // takes slot wrapper and moves it inside of dynamic video tag, have to bypass vue in this edgecase
+      this.$refs.video.parentNode.appendChild(this.$refs.video.querySelector(".video-inner-slot"))
     },
     dispose(callback) {
       if (this.player && this.player.dispose) {
