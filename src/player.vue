@@ -10,8 +10,9 @@
         :default="crtTrack.default"
         :key="crtTrack.src"
       />
-      <!-- support inner slot for fullscreen -->
+      <!-- support inner video slot -->
       <slot name="video-inner" />
+      <div class="test" />
     </video>
   </div>
 </template>
