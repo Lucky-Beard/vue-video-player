@@ -10,7 +10,7 @@
         :default="crtTrack.default"
         :key="crtTrack.src"
       />
-      <!-- support inner video slotsss -->
+      <!-- support inner video slots -->
       <slot name="video-inner" />
     </video>
   </div>
